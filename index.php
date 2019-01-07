@@ -361,7 +361,7 @@ function printPricing()
             <div class="card-body">
               <p class="card-title">Votre communication en ligne</p>
               <h4 class="card-text">
-                <span class="pricing-box-price">299 </span>
+                <span class="pricing-box-price">149 </span>
                 <sup class="pricing-box-currency">€</sup>
                 <small class="text-muted text-uppercase">/an</small>
               </h4>
@@ -383,7 +383,7 @@ function printPricing()
             <div class="card-body">
               <p class="card-title">Votre site de vente en ligne</p>
               <h4 class="card-text">
-                <span class="pricing-box-price">499 </span>
+                <span class="pricing-box-price">199 </span>
                 <sup class="pricing-box-currency">€</sup>
                 <small class="text-muted text-uppercase">/an</small>
               </h4>
