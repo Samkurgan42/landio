@@ -1,10 +1,6 @@
 <?php
 
-
-
 session_start();
-
-//$nTask = myController();
 
 printStartHtml();
 printBodyTag();
@@ -30,80 +26,70 @@ function printDebug()
       <h3 class="text-center">Debug</h3>
       <div class="row py-5 justify-content-between">
         <div class="col">';
-//echo '<p>Hello world</p>';
 
-//print_r($_POST);
-
-
-
-
-
+echo "<h4>_GET</h4>";
 echo "<p>";
-echo "_GET<br>";
 foreach( $_GET as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
 
+echo "<h4>_POST</h4>";
 echo "<p>";
-echo "_POST<br>";
 foreach( $_POST as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
 
+echo "<h4>_REQUEST</h4>";
 echo "<p>";
-echo "_REQUEST<br>";
 foreach( $_REQUEST as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
-/*
 
+echo "<h4>_FILES</h4>";
 echo "<p>";
-echo "_FILES<br>";
 foreach( $_FILES as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
 
+echo "<h4>_COOKIE</h4>";
 echo "<p>";
-echo "_COOKIE<br>";
 foreach( $_COOKIE as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
 
+echo "<h4>_SESSION</h4>";
 echo "<p>";
-echo "_SESSION<br>";
 foreach( $_SESSION as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
 
+echo "<h4>_ENV</h4>";
 echo "<p>";
-echo "_ENV<br>";
 foreach( $_ENV as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
 
+echo "<h4>_SERVER</h4>";
 echo "<p>";
-echo "_SERVER<br>";
 foreach( $_SERVER as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
-
+/*
+echo "<h4>GLOBALS</h4>";
 echo "<p>";
-echo "GLOBALS<br>";
 foreach( $GLOBALS as $k => $var) {
   echo $k . ' = ' . print_r($var) . ' <br>';
 }
 echo "</p>";
 */
-
-
 
 //print_r($_SERVER);
 //print_r($_GET);
@@ -120,13 +106,6 @@ echo "</p>";
     </div>
   </section>
   ';
-}
-
-function myController()
-{
-  $outTask = 0;
-
-  return($outTask);
 }
 
 function printStartHtml()
