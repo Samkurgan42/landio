@@ -30,15 +30,14 @@ function printDebug()
       <h3 class="text-center">Debug</h3>
       <div class="row py-5 justify-content-between">
         <div class="col">';
-echo '<p>Hello world</p>';
+//echo '<p>Hello world</p>';
 
-print_r($_POST);
-
-
+//print_r($_POST);
 
 
 
-/*
+
+
 echo "<p>";
 echo "_GET<br>";
 foreach( $_GET as $k => $var) {
@@ -49,7 +48,7 @@ echo "</p>";
 echo "<p>";
 echo "_POST<br>";
 foreach( $_POST as $k => $var) {
-  echo $k . ' = ' . print_r($var) . ' <br>';
+  echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
 
@@ -59,6 +58,7 @@ foreach( $_REQUEST as $k => $var) {
   echo $k . ' = ' . $var . ' <br>';
 }
 echo "</p>";
+/*
 
 echo "<p>";
 echo "_FILES<br>";
@@ -164,8 +164,6 @@ function printStartHtml()
         <link rel="stylesheet" href="./assets/css/landio.min.css">
       </head>
 
-      <body>
-
     ';
 }
 
@@ -220,7 +218,7 @@ function printNavigation()
           </li>
           <li class="nav-item nav-item-toggable hidden-md-up">
             <form class="navbar-form" role="form" action="/index.php" method="get">
-              <input class="form-control navbar-search-input" type="text" placeholder="Type your search &amp; hit Enter&hellip;">
+              <input name="search1" class="form-control navbar-search-input" type="text" placeholder="Type your search &amp; hit Enter&hellip;">
             </form>
           </li>
           <li class="navbar-divider hidden-md-down" aria-hidden="true"></li>
@@ -229,8 +227,8 @@ function printNavigation()
               <span class="icon-search"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-search" aria-labelledby="dropdownMenu1">
-              <form class="navbar-form">
-                <input class="form-control navbar-search-input" type="text" placeholder="Type your search &amp; hit Enter&hellip;">
+              <form class="navbar-form" action="/index.php" method="get">
+                <input name="search2" class="form-control navbar-search-input" type="text" placeholder="Type your search &amp; hit Enter&hellip;">
               </form>
             </div>
           </li>
@@ -489,13 +487,13 @@ function printSignup()
           <div class="col-md-6 col-xl-3">
             <div class="form-group has-icon-left form-control-name">
               <label class="sr-only" for="inputName">Votre nom</label>
-              <input type="text" name="nom" class="form-control form-control-lg" id="inputName" placeholder="Nom prénom">
+              <input type="text" name="leadname" class="form-control form-control-lg" id="inputName" placeholder="Nom prénom">
             </div>
           </div>
           <div class="col-md-6 col-xl-3">
             <div class="form-group has-icon-left form-control-email">
               <label class="sr-only" for="inputEmail">votre courriel</label>
-              <input type="email" name="email" class="form-control form-control-lg" id="inputEmail" placeholder="addresse email" autocomplete="off">
+              <input type="email" name="leademail" class="form-control form-control-lg" id="inputEmail" placeholder="addresse email" autocomplete="off">
             </div>
           </div>
           <div class="col-md-6 col-xl-3">
