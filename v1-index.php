@@ -205,7 +205,7 @@ function printNavigation()
             <a class="nav-link" href="#contact" >Contact</a>
           </li>
           <li class="nav-item nav-item-toggable hidden-md-up">
-            <form class="navbar-form" role="form" action="/index.php" method="get">
+            <form class="navbar-form" role="form" action="v1-index.php" method="post">
               <input name="search1" class="form-control navbar-search-input" type="text" placeholder="Type your search &amp; hit Enter&hellip;">
             </form>
           </li>
@@ -215,7 +215,7 @@ function printNavigation()
               <span class="icon-search"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-search" aria-labelledby="dropdownMenu1">
-              <form class="navbar-form" action="/index.php" method="get">
+              <form class="navbar-form" action="v1-index.php" method="post">
                 <input name="search2" class="form-control navbar-search-input" type="text" placeholder="Type your search &amp; hit Enter&hellip;">
               </form>
             </div>
@@ -466,7 +466,7 @@ function printSignup()
   <section class="section-signup bg-light" id="contact">
     <div class="container">
       <h3 class="text-center mb-5">Contactez nous</h3>
-      <form action="/index.php" method="get">
+      <form action="v1-index.php" method="post">
         <div class="row">
           <div class="col-md-6 col-xl-3">
             <div class="form-group has-icon-left form-control-name">

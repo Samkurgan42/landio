@@ -1,21 +1,76 @@
 <?php
 
-session_start();
 
-printStartHtml();
-printNavigation();
-printHeroSection();
-printDebug();
-printIntro();
-prinFeatures();
-printPricing();
-printTextRow();
-printNews();
-printSignup();
-printFooter();
-printEndHtml();
+function printLogin()
+{
 
-//// Fin script principal
+  $sLoginTemplate = '
+  <!-- Login
+  ================================================== -->
+
+  <section class="section-signup bg-light" id="login">
+    <div class="container">
+      <h3 class="text-center mb-5">Login</h3>
+      <form action="%s" method="post">
+        <div class="row">
+
+            <div class="col-md-6 col-xl-3">
+              <div class="form-group has-icon-left form-control-email">
+                <label class="sr-only" for="log-email">votre courriel</label>
+                <input type="email" name="log-email" class="form-control form-control-lg" id="log-email" placeholder="addresse email" autocomplete="off">
+              </div>
+            </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="form-group has-icon-left form-control-name">
+              <label class="sr-only" for="log-password">Mot de passe</label>
+              <input type="password" name="log-password" class="form-control form-control-lg" id="log-password" placeholder="Votre mot de passe">
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-lg btn-block btn-pill">Connexion</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  ';
+
+  echo sprintf($sLoginTemplate, 'v2-login.php');
+}
+
+function printContact()
+{
+  echo '
+  <section class="section-text">
+    <div class="container">
+      <h3 class="text-center">Contact</h3>
+      <div class="row py-5 justify-content-between">
+        <div class="col">';
+
+echo '
+    <table>
+    <tr>
+        <td>Toto</td>
+        <td>toto@toto.fr</td>
+    </tr>
+    <tr>
+        <td>Titi</td>
+        <td>titi@titi.fr</td>
+    </tr>
+    </table>
+';
+
+
+  echo '        </div>
+      </div>
+    </div>
+  </section>
+  ';
+}
 
 function printDebug()
 {
@@ -26,14 +81,14 @@ function printDebug()
       <div class="row py-5 justify-content-between">
         <div class="col">';
 
-    printSuperGlobal($_GET, '_GET');
+//    printSuperGlobal($_GET, '_GET');
     printSuperGlobal($_POST, '_POST');
-    printSuperGlobal($_REQUEST, '_REQUEST');
-    printSuperGlobal($_FILES, '_FILES');
+//    printSuperGlobal($_REQUEST, '_REQUEST');
+//    printSuperGlobal($_FILES, '_FILES');
     printSuperGlobal($_COOKIE, '_COOKIE');
     printSuperGlobal($_SESSION, '_SESSION');
-    printSuperGlobal($_ENV, '_ENV');
-    printSuperGlobal($_SERVER, '_SERVER');
+//    printSuperGlobal($_ENV, '_ENV');
+//    printSuperGlobal($_SERVER, '_SERVER');
 
   echo '        </div>
       </div>
@@ -52,80 +107,6 @@ function printSuperGlobal($aVariable, $sTitre)
     echo "</p>";
 
 }
-
-/*
-function printDebug()
-{
-  echo '
-  <section class="section-text">
-    <div class="container">
-      <h3 class="text-center">Debug</h3>
-      <div class="row py-5 justify-content-between">
-        <div class="col">';
-
-echo "<h4>_GET</h4>";
-echo "<p>";
-foreach( $_GET as $k => $var) {
-  echo $k . ' = ' . $var . ' <br>';
-}
-echo "</p>";
-
-echo "<h4>_POST</h4>";
-echo "<p>";
-foreach( $_POST as $k => $var) {
-  echo $k . ' = ' . $var . ' <br>';
-}
-echo "</p>";
-
-echo "<h4>_REQUEST</h4>";
-echo "<p>";
-foreach( $_REQUEST as $k => $var) {
-  echo $k . ' = ' . $var . ' <br>';
-}
-echo "</p>";
-
-echo "<h4>_FILES</h4>";
-echo "<p>";
-foreach( $_FILES as $k => $var) {
-  echo $k . ' = ' . $var . ' <br>';
-}
-echo "</p>";
-
-echo "<h4>_COOKIE</h4>";
-echo "<p>";
-foreach( $_COOKIE as $k => $var) {
-  echo $k . ' = ' . $var . ' <br>';
-}
-echo "</p>";
-
-echo "<h4>_SESSION</h4>";
-echo "<p>";
-foreach( $_SESSION as $k => $var) {
-  echo $k . ' = ' . $var . ' <br>';
-}
-echo "</p>";
-
-echo "<h4>_ENV</h4>";
-echo "<p>";
-foreach( $_ENV as $k => $var) {
-  echo $k . ' = ' . $var . ' <br>';
-}
-echo "</p>";
-
-echo "<h4>_SERVER</h4>";
-echo "<p>";
-foreach( $_SERVER as $k => $var) {
-  echo $k . ' = ' . $var . ' <br>';
-}
-echo "</p>";
-
-  echo '        </div>
-      </div>
-    </div>
-  </section>
-  ';
-}
-*/
 
 function printStartHtml()
 {
@@ -176,7 +157,8 @@ function printEndHtml()
 
 function printNavigation()
 {
-  echo '
+
+    $sNavTemplate = '
   <!-- Navigation
   ================================================== -->
 
@@ -205,7 +187,7 @@ function printNavigation()
             <a class="nav-link" href="#contact" >Contact</a>
           </li>
           <li class="nav-item nav-item-toggable hidden-md-up">
-            <form class="navbar-form" role="form" action="/index.php" method="get">
+            <form class="navbar-form" role="form" action="%s" method="post">
               <input name="search1" class="form-control navbar-search-input" type="text" placeholder="Type your search &amp; hit Enter&hellip;">
             </form>
           </li>
@@ -215,7 +197,7 @@ function printNavigation()
               <span class="icon-search"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-search" aria-labelledby="dropdownMenu1">
-              <form class="navbar-form" action="/index.php" method="get">
+              <form class="navbar-form" action="%s" method="post">
                 <input name="search2" class="form-control navbar-search-input" type="text" placeholder="Type your search &amp; hit Enter&hellip;">
               </form>
             </div>
@@ -225,6 +207,9 @@ function printNavigation()
     </div>
   </nav>
   ';
+
+  echo sprintf($sNavTemplate, INDEX_PAGE, INDEX_PAGE);
+
 }
 
 function printHeroSection()
@@ -459,14 +444,15 @@ function printNews()
 
 function printSignup()
 {
-  echo '
+
+  $sSignupTemplate = '
   <!-- Sign Up
   ================================================== -->
 
   <section class="section-signup bg-light" id="contact">
     <div class="container">
       <h3 class="text-center mb-5">Contactez nous</h3>
-      <form action="/index.php" method="get">
+      <form action="%s" method="post">
         <div class="row">
           <div class="col-md-6 col-xl-3">
             <div class="form-group has-icon-left form-control-name">
@@ -494,6 +480,8 @@ function printSignup()
     </div>
   </section>
   ';
+
+  echo sprintf($sSignupTemplate, INDEX_PAGE);
 }
 
 function printFooter()
@@ -524,5 +512,3 @@ function printFooter()
   </footer>
   ';
 }
-
-?>
