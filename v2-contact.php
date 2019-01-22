@@ -20,7 +20,7 @@ if ($sLogStatus != 'login') {
 
 printStartHtml();
 printNavigation();
-printHeroSection();
+printHero3Section();
 printContact();
 printFooter();
 printEndHtml();

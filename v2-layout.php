@@ -10,7 +10,6 @@ function printLogin()
 
   <section class="section-signup bg-light" id="login">
     <div class="container">
-      <h3 class="text-center mb-5">Login</h3>
       <form action="%s" method="post">
         <div class="row">
 
@@ -42,12 +41,43 @@ function printLogin()
   echo sprintf($sLoginTemplate, 'v2-login.php');
 }
 
+function printHero2Section()
+{
+  echo '
+      <!-- Hero 2 Section
+      ================================================== -->
+
+      <header class="jumbotron bg-dark d-md-flex flex-md-column justify-content-md-center align-items-md-center" role="banner">
+
+        <div class="text-center">
+          <h1 class="display-3">Mon site web sur mesure</h1>
+          <h2 class="mb-5">Connexion</h2>
+        </div>
+      </header>
+  ';
+}
+
+function printHero3Section()
+{
+  echo '
+      <!-- Hero 2 Section
+      ================================================== -->
+
+      <header class="jumbotron bg-dark d-md-flex flex-md-column justify-content-md-center align-items-md-center" role="banner">
+
+        <div class="text-center">
+          <h1 class="display-3">Mon site web sur mesure</h1>
+          <h2 class="mb-5">Liste des contacts</h2>
+        </div>
+      </header>
+  ';
+}
+
 function printContact()
 {
   echo '
   <section class="section-text">
     <div class="container">
-      <h3 class="text-center">Contact</h3>
       <div class="row py-5 justify-content-between">
         <div class="col">';
 

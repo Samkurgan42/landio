@@ -16,9 +16,9 @@ if ($sLogStatus=='logout') {
     // ecran de connexion
     printStartHtml();
     printNavigation();
-    printHeroSection();
-    printDebug();
+    printHero2Section();
     printLogin();
+    printDebug();
     printFooter();
     printEndHtml();
     $_SESSION['log-status'] = 'check-login';
