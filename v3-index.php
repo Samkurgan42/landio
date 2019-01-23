@@ -33,6 +33,8 @@ if ($sLogStatus=='check-login') {
         if ($bLogin) {
             $_SESSION['log-status'] = 'login';
             $_SESSION['log-email'] = $sEmail;
+
+
         } else {
             echo "mot de passe incorrect";
         }
@@ -88,6 +90,8 @@ if (isset($_POST['search'])) {
             if ($sLogStatus=='login') {
                 printPage('contact');
             } else {
+                $_SESSION['log-status'] = 'check-login';
+                $_SESSION['next-view'] = 'contact';
                 printPage('login');
             }
             break;

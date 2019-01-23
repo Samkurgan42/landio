@@ -1,13 +1,13 @@
 ** Controleur
 - gestion session.next-view
-- verifiyPassword
+// verifiyPassword
 
 
 ** Modele
 - createUser filter_var email
 - createuser interdire mot de passe < 4 caracteres
 - mot de passe contenant majuscules, minuscules, chiffres, caractères spéciaux
-- verifyPassword filter_var email 
+- verifyPassword filter_var email
 - getAuth:
     - verif erreur fread
     - erreur json_decode
@@ -15,5 +15,5 @@
     - variables 'email' et 'pwd_hash' sont bien definies
 
 ** view
-- utilser une layout function pour supprimer le 2eme switch
+// utilser une layout function pour supprimer le 2eme switch
 - Récupérer le terme recherché dans le body Recherche
