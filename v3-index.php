@@ -4,49 +4,59 @@ require('v3-model-auth.php');
 
 session_start();
 
+$sLogStatus = 'logout';
+$sUserEmail = '';
 if (isset($_SESSION['log-status'])) {
     $sLogStatus = $_SESSION['log-status'];
-    $sUserEmail = $_SESSION['user-email'];
+    $sUserEmail = $_SESSION['log-email'];
 
 } else {
-    $_SESSION['log-status'] = 'logout';
-    $_SESSION['user-email'] = '';
-
-    $sLogStatus = $_SESSION['log-status'];
-    $sUserEmail = $_SESSION['user-email'];
+    $_SESSION['log-status'] = $sLogStatus;
+    $_SESSION['log-email'] = $sUserEmail;
 }
 
-/* Reprendre ici !!!!!
-//////////////////////
-if ($_SESSION['log-status']=='check-login') {
+if ($sLogStatus=='check-login') {
 //    $sEmail = $_POST['log-email'] ?? '';  PHP 7
 //    $sEmail = isset($_POST['log-email'] ? $_POST['log-email'] : ''; //PHP 5
+    $sEmail = "";
     if (isset($_POST['log-email'])) {
         $sEmail = $_POST['log-email'];
-    } else {
-        $sEmail = "";
     }
 
-    $bLogin = verifyPassword($sUserEmail,$sPassword);
+    $sPassword = "";
+    if (isset($_POST['log-password'])) {
+        $sPassword = $_POST['log-password'];
+    }
+
+    if ( ($sEmail !== '') || ($sPassword !== '') ) {
+        $bLogin = verifyPassword($sEmail,$sPassword);
+        if ($bLogin) {
+            $_SESSION['log-status'] = 'login';
+            $_SESSION['log-email'] = $sEmail;
+        } else {
+            echo "mot de passe incorrect";
+        }
+    }
+
 }
-*/
+
 
 
 $sCmd = '';
 
 if (isset($_POST['search'])) {
     switch ($_POST['search']) {
-        case 'contact':
-        case 'contacts':
+        case '$contact':
+        case '$contacts':
             $sCmd = 'contact';
             break;
-        case 'login':
+        case '$login':
             $sCmd = 'login';
             break;
-        case 'logout':
+        case '$logout':
             $sCmd = 'logout';
             break;
-        case 'index':
+        case '$index':
             $sCmd = 'index';
             break;
         default:
@@ -62,7 +72,7 @@ if (isset($_POST['search'])) {
             break;
         case 'logout':
             $_SESSION['log-status'] = 'logout';
-            $_SESSION['user-email'] = '';
+            $_SESSION['log-email'] = '';
             session_destroy();
 
             printPage('index');

@@ -9,7 +9,10 @@ function verifyPassword($sEmail,$sPassword)
 {
     $bAllowed = false;
 
+    echo "verifyPassword($sEmail,$sPassword)";
+
     $aAuth = getUserAuth($sEmail);
+//    print_r($aAuth);
 
     if (password_verify($sPassword, $aAuth['password_hash'])) {
 //        echo 'Le mot de passe est valide !';

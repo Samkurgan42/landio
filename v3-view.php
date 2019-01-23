@@ -5,25 +5,30 @@ function printPage($sView)
     switch ($sView) {
         case 'index':
             $sTitrePage = 'Page index';
+            $sFonctionLayout = 'printBodyIndex';
             break;
         case 'contact':
             $sTitrePage = 'Page contact';
+            $sFonctionLayout = 'printBodyContact';
             break;
         case 'login':
             $sTitrePage = 'Page login';
+            $sFonctionLayout = 'printBodyLogin';
             break;
         case 'recherche':
             $sTitrePage = 'Page recherche';
+            $sFonctionLayout = 'printBodyRecherche';
             break;
         default:
             $sTitrePage = 'Page index';
+            $sFonctionLayout = 'printBodyIndex';
             break;
     }
 
     printHtmlHeader($sTitrePage);
     printHeader();
     printDebug();
-
+/*
     switch ($sView) {
         case 'index':
             printBodyIndex();
@@ -41,6 +46,8 @@ function printPage($sView)
             printBodyIndex();
             break;
     }
+    */
+    $sFonctionLayout();
     printFooter();
     printHtmlFooter();
 }
@@ -64,7 +71,7 @@ function printHeader()
 {
     echo '<header>
     header
-    <form action="mvc.php" method="post">
+    <form action="v3-index.php" method="post">
     <input type="text" name="search" placeholder="recherche">
     <input type="submit">
     </form>
@@ -96,7 +103,7 @@ function printBodyRecherche()
 function printBodyLogin()
 {
     echo '<H1>Page login</H1>
-        <form action="mvc.php" method="post">
+        <form action="v3-index.php" method="post">
         email:<input type="email" name="log-email" placeholder="email">
         password:<input type="password" name="log-password" placeholder="password">
         <input type="submit">
