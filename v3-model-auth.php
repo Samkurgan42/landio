@@ -9,7 +9,7 @@ function verifyPassword($sEmail,$sPassword)
 {
     $bAllowed = false;
 
-    echo "verifyPassword($sEmail,$sPassword)";
+//    echo "verifyPassword($sEmail,$sPassword)";
 
     $aAuth = getUserAuth($sEmail);
 //    print_r($aAuth);

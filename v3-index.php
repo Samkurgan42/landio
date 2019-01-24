@@ -15,9 +15,11 @@ if (isset($_SESSION['log-status'])) {
     $_SESSION['log-email'] = $sUserEmail;
 }
 
+$sCmd = '';
 if ($sLogStatus=='check-login') {
 //    $sEmail = $_POST['log-email'] ?? '';  PHP 7
 //    $sEmail = isset($_POST['log-email'] ? $_POST['log-email'] : ''; //PHP 5
+
     $sEmail = "";
     if (isset($_POST['log-email'])) {
         $sEmail = $_POST['log-email'];
@@ -30,23 +32,21 @@ if ($sLogStatus=='check-login') {
 
     if ( ($sEmail !== '') || ($sPassword !== '') ) {
         $bLogin = verifyPassword($sEmail,$sPassword);
+//        echo "bLogin=$bLogin<br>";
         if ($bLogin) {
             $_SESSION['log-status'] = 'login';
             $_SESSION['log-email'] = $sEmail;
-
-
+            $sCmd = $_SESSION['next-view'];
+            $sLogStatus = $_SESSION['log-status'];
+            //echo "login correct commande $sCmd |".$_SESSION['log-status']."<br>";
         } else {
             echo "mot de passe incorrect";
         }
     }
-
 }
 
-
-
-$sCmd = '';
-
-if (isset($_POST['search'])) {
+//echo "sCmd:$sCmd<br>";
+if (($sCmd==='') && isset($_POST['search'])) {
     switch ($_POST['search']) {
         case '$contact':
         case '$contacts':
@@ -68,6 +68,7 @@ if (isset($_POST['search'])) {
     }
 }
 
+//echo "2-sCmd:$sCmd<br>";
     switch ($sCmd) {
         case 'index':
             printPage('index');
@@ -81,6 +82,7 @@ if (isset($_POST['search'])) {
             break;
         case 'login':
             $_SESSION['log-status'] = 'check-login';
+            $_SESSION['next-view'] = 'index';
             printPage('login');
             break;
         case 'recherche':
