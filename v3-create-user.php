@@ -40,30 +40,36 @@ if ( (! $bErreur)  ){
 
     for ($i=0; $i < strlen($sPassword); $i++) {
         $sChar = substr($sPassword,$i,1);
+//        echo "sChar:$sChar -";
 
         $bValid = false;
         if (ctype_digit($sChar)) {
             $bValid = true;
             $bUnChiffre = true;
+//            echo " chiffre";
         }
         if (ctype_upper($sChar)) {
             $bValid = true;
             $bUneMaj = true;
+//            echo " MAJ";
         }
         if (ctype_lower($sChar)) {
             $bValid = true;
             $bUneMin = true;
+//            echo " min";
         }
 
         if (in_array(ord($sChar), $aCaracSpeciaux)) {
             $bValid = true;
             $bUnSpec = true;
+//            echo " special";
         }
 
-        if ($bValid) {
+        if (!$bValid) {
             $bPasswordOK = false;
         }
 
+//        echo "\n";
     }
 
     if (!$bUnChiffre || !$bUneMaj || !$bUneMin || !$bUnSpec) {

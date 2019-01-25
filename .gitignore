@@ -1,3 +1,4 @@
 node_modules/
 toto*
 user_*.json
+phpinfo.php

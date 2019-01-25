@@ -12,9 +12,9 @@ function verifyPassword($sEmail,$sPassword)
 //    echo "verifyPassword($sEmail,$sPassword)";
 
     $aAuth = getUserAuth($sEmail);
-//    print_r($aAuth);
+//    echo "after getAuth<br>";var_dump($aAuth);echo "Fin print_r";
 
-    if (password_verify($sPassword, $aAuth['password_hash'])) {
+    if ($aAuth!==false && password_verify($sPassword, $aAuth['password_hash'])) {
 //        echo 'Le mot de passe est valide !';
         $bAllowed = true;
     }
@@ -25,19 +25,35 @@ function verifyPassword($sEmail,$sPassword)
 function getUserAuth($sEmail)
 {
     $aAuth = array();
+    $bErreur = false;
+    $outReturn = false;
 
     $sFilename = getFilename($sEmail);
 
     if (file_exists($sFilename)) {
         $fp = fopen($sFilename, "r");
         $sJson = fread($fp, 1024);
+        if ($sJson === false) {
+            $bErreur = true;
+        }
         fclose($fp);
 
 //        echo "sJson=$sJson\n";
         $aAuth = json_decode($sJson, true);
+        if (is_null($aAuth)) {
+            $bErreur = true;
+        }
+
+        if (!is_array($aAuth) || !isset($aAuth['email']) || !isset($aAuth['password_hash']) ) {
+            $bErreur = true;
+        }
     }
 
-    return($aAuth);
+    if (!$bErreur) {
+        $outReturn = $aAuth;
+    }
+
+    return($outReturn);
 }
 
 function createUser($sEmail, $sPassword)

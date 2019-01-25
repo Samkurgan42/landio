@@ -30,7 +30,8 @@ if ($sLogStatus=='check-login') {
         $sPassword = $_POST['log-password'];
     }
 
-    if ( ($sEmail !== '') || ($sPassword !== '') ) {
+    if ( ($sEmail !== '') && ($sPassword !== '') &&
+         filter_var($sEmail, FILTER_VALIDATE_EMAIL)!==false ) {
         $bLogin = verifyPassword($sEmail,$sPassword);
 //        echo "bLogin=$bLogin<br>";
         if ($bLogin) {
@@ -42,12 +43,22 @@ if ($sLogStatus=='check-login') {
         } else {
             echo "mot de passe incorrect";
         }
+    } else {
+        $_SESSION['log-status'] = 'logout';
+        $_SESSION['log-email'] = '';
     }
 }
 
-//echo "sCmd:$sCmd<br>";
-if (($sCmd==='') && isset($_POST['search'])) {
-    switch ($_POST['search']) {
+$sSearch = '';
+if (isset($_POST['search2'])) {
+    $sSearch = $_POST['search2'];
+} elseif (isset($_POST['search1'])) {
+    $sSearch = $_POST['search1'];
+}
+
+
+if (($sCmd==='') && ($sSearch!=='')) {
+    switch ($sSearch) {
         case '$contact':
         case '$contacts':
             $sCmd = 'contact';
@@ -63,12 +74,11 @@ if (($sCmd==='') && isset($_POST['search'])) {
             break;
         default:
             $sCmd = 'recherche';
-            $sSearch = $_POST['search'];
+            $sSearch = $sSearch;
             break;
     }
 }
 
-//echo "2-sCmd:$sCmd<br>";
     switch ($sCmd) {
         case 'index':
             printPage('index');

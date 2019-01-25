@@ -1,33 +1,93 @@
 <?php
+require('v3-layout.php');
+
+define("INDEX_PAGE", "v3-index.php");
 
 function printPage($sView)
 {
     switch ($sView) {
         case 'index':
-            $sTitrePage = 'Page index';
-            $sFonctionLayout = 'printBodyIndex';
+//            $sTitrePage = 'Page index';
+//            $sFonctionLayout = 'printBodyIndex';
+
+            printStartHtml();
+            printNavigation();
+            //printHeroSection();
+            printHeroSectionTemplate($sView);
+//            printDebug();
+            printIntro();
+            prinFeatures();
+            printPricing();
+            printTextRow();
+            printNews();
+            printSignup();
+            printFooter();
+            printEndHtml();
+
+
             break;
         case 'contact':
-            $sTitrePage = 'Page contact';
-            $sFonctionLayout = 'printBodyContact';
+//            $sTitrePage = 'Page contact';
+//            $sFonctionLayout = 'printBodyContact';
+
+            printStartHtml();
+            printNavigation();
+//            printHero3Section();
+            printHeroSectionTemplate($sView);
+            printContact();
+            printFooter();
+            printEndHtml();
+
             break;
         case 'login':
-            $sTitrePage = 'Page login';
-            $sFonctionLayout = 'printBodyLogin';
+//            $sTitrePage = 'Page login';
+//            $sFonctionLayout = 'printBodyLogin';
+            printStartHtml();
+            printNavigation();
+//            printHero2Section();
+            printHeroSectionTemplate($sView);
+            printLogin();
+//            printDebug();
+            printFooter();
+            printEndHtml();
+
             break;
         case 'recherche':
-            $sTitrePage = 'Page recherche';
-            $sFonctionLayout = 'printBodyRecherche';
+//            $sTitrePage = 'Page recherche';
+//            $sFonctionLayout = 'printBodyRecherche';
+            printStartHtml();
+            printNavigation();
+//            printHero2Section();
+            printHeroSectionTemplate($sView);
+//            printLogin();
+//            printDebug();
+            printFooter();
+            printEndHtml();
             break;
         default:
-            $sTitrePage = 'Page index';
-            $sFonctionLayout = 'printBodyIndex';
+//            $sTitrePage = 'Page index';
+//            $sFonctionLayout = 'printBodyIndex';
+            printStartHtml();
+            printNavigation();
+//            printHeroSection();
+            printHeroSectionTemplate($sView);
+//            printDebug();
+            printIntro();
+            prinFeatures();
+            printPricing();
+            printTextRow();
+            printNews();
+            printSignup();
+            printFooter();
+            printEndHtml();
+
             break;
     }
-
+/*
     printHtmlHeader($sTitrePage);
     printHeader();
     printDebug();
+    */
 /*
     switch ($sView) {
         case 'index':
@@ -47,12 +107,14 @@ function printPage($sView)
             break;
     }
     */
+    /*
     $sFonctionLayout();
     printFooter();
     printHtmlFooter();
+    */
 }
 
-
+/*
 function printDebug()
 {
     global $sCmd, $sSearch;
@@ -131,3 +193,4 @@ function printHtmlFooter()
     </HTML>
     ';
 }
+*/
