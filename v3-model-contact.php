@@ -19,14 +19,16 @@ function insertContact($sNom, $sEmail)
 {
     global $dbLink;
 
-    $query = "INSERT INTO contact (contact_nom, contact_email, contact_date) VALUES (?,?,?)";
-    $stmt = mysqli_prepare($dbLink, $query);
-    mysqli_stmt_bind_param($stmt, "sss", $nom, $email, $datecontact );
+    if (filter_var($sEmail, FILTER_VALIDATE_EMAIL)!==false) {
+        $query = "INSERT INTO contact (contact_nom, contact_email, contact_date) VALUES (?,?,?)";
+        $stmt = mysqli_prepare($dbLink, $query);
+        mysqli_stmt_bind_param($stmt, "sss", $nom, $email, $datecontact );
 
-    $nom = $sNom;
-    $email = $sEmail;
-    $datecontact = date( "Ymd", time() );
-    mysqli_stmt_execute($stmt);
+        $nom = $sNom;
+        $email = $sEmail;
+        $datecontact = date( "Ymd", time() );
+        mysqli_stmt_execute($stmt);
+    }
 }
 
 // Liste des contacts des 7 derniers jours
@@ -46,6 +48,6 @@ function listContact()
     while ($aRow = mysqli_fetch_assoc($result)) {
       $aContact[] = $aRow;
     }
-    
+
     return($aContact);
 }
