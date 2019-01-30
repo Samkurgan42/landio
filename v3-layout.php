@@ -78,84 +78,44 @@ function printHeroSectionTemplate($sView)
 
 }
 
-/*
-function printHero2Section()
+function printContact($aData)
 {
-  echo '
-      <!-- Hero 2 Section
-      ================================================== -->
+    $sLineTemplate = '
+        <tr>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+        </tr>';
 
-      <header class="jumbotron bg-dark d-md-flex flex-md-column justify-content-md-center align-items-md-center" role="banner">
-
-        <div class="text-center">
-          <h1 class="display-3">Mon site web sur mesure</h1>
-          <h2 class="mb-5">Connexion</h2>
-        </div>
-      </header>
-  ';
-}
-
-function printHero3Section()
-{
-  echo '
-      <!-- Hero 2 Section
-      ================================================== -->
-
-      <header class="jumbotron bg-dark d-md-flex flex-md-column justify-content-md-center align-items-md-center" role="banner">
-
-        <div class="text-center">
-          <h1 class="display-3">Mon site web sur mesure</h1>
-          <h2 class="mb-5">Liste des contacts</h2>
-        </div>
-      </header>
-  ';
-}
-
-function printHeroSection()
-{
-  echo '
-      <!-- Hero Section
-      ================================================== -->
-
-      <header class="jumbotron bg-dark d-md-flex flex-md-column justify-content-md-center align-items-md-center" role="banner">
-
-        <div class="text-center">
-          <h1 class="display-3">Mon site web sur mesure</h1>
-          <h2 class="mb-5">en quelques <em>clics</em> avec un accompagnement professionnel </a>.</h2>
-          <a class="btn btn-outline-light btn-lg btn-outline-light mb-4 mb-md-0" href="#features" role="button"><span class="icon-sketch"></span>En savoir plus</a>
-        </div>
-      </header>
-  ';
-}
-*/
-
-function printContact()
-{
-  echo '
+    echo '
   <section class="section-text">
     <div class="container">
       <div class="row py-5 justify-content-between">
         <div class="col">';
 
-echo '
-    <table>
-    <tr>
-        <td>Toto</td>
-        <td>toto@toto.fr</td>
-    </tr>
-    <tr>
-        <td>Titi</td>
-        <td>titi@titi.fr</td>
-    </tr>
-    </table>
-';
+    echo '
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>';
 
+    foreach($aData as $aRow ) {
+        $sDateContact = substr($aRow['contact_date'],6,2).'-'.substr($aRow['contact_date'],4,2).'-'.substr($aRow['contact_date'],0,4);
+        echo sprintf($sLineTemplate, $aRow['contact_nom'], $aRow['contact_email'], $sDateContact);
+    }
 
-  echo '        </div>
+    echo '
+            </tbody>
+            </table>
+        </div>
       </div>
     </div>
-  </section>
-  ';
+  </section>';
 }
 
 function printDebug()

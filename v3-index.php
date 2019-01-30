@@ -1,6 +1,15 @@
 <?php
 require('v3-view.php');
 require('v3-model-auth.php');
+require('v3-model-contact.php');
+
+define("DB_HOST", "localhost");
+define("DB_USER", "user_landio");
+define("DB_PWD",  "pwd_landio");
+define("DB_BASE", "landio");
+
+// variables globales
+$dbLink = 0;
 
 session_start();
 
@@ -73,6 +82,7 @@ if (($sCmd==='') && ($sSearch!=='')) {
             $sCmd = 'index';
             break;
         default:
+
             $sCmd = 'recherche';
             $sSearch = $sSearch;
             break;
@@ -100,7 +110,10 @@ if (($sCmd==='') && ($sSearch!=='')) {
             break;
         case 'contact':
             if ($sLogStatus=='login') {
-                printPage('contact');
+                openDB();
+                $aListeContact = listContact();
+                closeDB();
+                printPage('contact', $aListeContact);
             } else {
                 $_SESSION['log-status'] = 'check-login';
                 $_SESSION['next-view'] = 'contact';
@@ -108,11 +121,16 @@ if (($sCmd==='') && ($sSearch!=='')) {
             }
             break;
         default:
+            if (
+                isset($_POST['leadname'])  &&
+                isset($_POST['leademail']) &&
+                $_POST['leadname']  !== '' &&
+                $_POST['leademail'] !== ''
+            ) {
+                openDB();
+                insertContact( $_POST['leadname'], $_POST['leademail']);
+                closeDB();
+            }
+
             printPage('index');
     }
-
-
-//printPage('contact');
-//printPage('login');
-
-//$bLoggedIn = verifyPassword('toto@greta.fr', '0+0');

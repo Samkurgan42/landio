@@ -3,7 +3,7 @@ require('v3-layout.php');
 
 define("INDEX_PAGE", "v3-index.php");
 
-function printPage($sView)
+function printPage($sView, $aData=array())
 {
     switch ($sView) {
         case 'index':
@@ -34,7 +34,7 @@ function printPage($sView)
             printNavigation();
 //            printHero3Section();
             printHeroSectionTemplate($sView);
-            printContact();
+            printContact($aData);
             printFooter();
             printEndHtml();
 
